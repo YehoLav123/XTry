@@ -1,0 +1,57 @@
+﻿@page "/"
+@inject NavigationManager Navigation
+
+<PageTitle>Sign up</PageTitle>
+<p>
+
+</p>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="StyleSheet.css">
+</head>
+<div class="Container">
+    <h1>Fill out this form to join the MonkeyGang</h1>
+
+    <p>
+        
+    </p>
+    <EditForm model="@registrating" OnValidSubmit="Sumbitting">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div>
+            <label for="username"> Username</label>
+            <input type="username" placeholder="Please enter your username" required @bind-value="registrating.Username" class="form-control" />
+        </div>
+        <div>
+        </div>
+        <label for="email">Email</label>
+        <input type="email" placeholder="Please enter your email" required @bind-value="registrating.Email" class="form-control" />
+        <div>
+        </div>
+        <label for="password">Password</label>
+        <input type="password" placeholder="Please enter your password" pattern="^(?=.[0-9])(?=.[a-z])(?=.[A-Z])(?=.[*/d]).{8,}$" title="A password must include at least 8 characters,and a capital letter, a lowercase letter and a number at least once!" required @bind-value="registrating.Password" class="form-control" />
+        <p>
+
+        </p>
+        <p>
+
+        </p>
+        <div class="SumbitButton">
+            <button type="submit">Submit</button>
+        </div>
+        <p>
+            <img src="monkegun.png" />
+        </p>
+    </EditForm>
+</div>
+@code {
+    private Registration registrating = new Registration();
+
+    private void Sumbitting()
+    {
+        Navigation.NavigateTo("/success");
+        Console.WriteLine("We hope you enjoy your stay with us," + registrating.Username + "!");
+    }
+}
